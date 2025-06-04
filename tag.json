@@ -1,0 +1,203 @@
+{
+  "Approved": [
+    {
+      "Knowledge": [
+        {
+          "#science": [
+            {
+              "#physics": [
+                {
+                  "#burn": []
+                },
+                {
+                  "#explosion": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "#psychology": [
+            {
+              "#trauma": []
+            },
+            {
+              "Personality Traits": [
+                {
+                  "#narcissism": []
+                }
+              ]
+            },
+            {
+              "#mass_psychology": []
+            }
+          ]
+        },
+        {
+          "Psychoanalysis": [
+            {
+              "#death_drive": []
+            }
+          ]
+        },
+        {
+          "#programming": [
+            {
+              "#python": []
+            }
+          ]
+        },
+        {
+          "#neuro_science": [
+            {
+              "#dopamine": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "#quote": [
+        {
+          "Fiction": [
+            {
+              "#yugioh": []
+            },
+            {
+              "#kamen_rider": []
+            },
+            {
+              "#spiderman": []
+            },
+            {
+              "#the_5th_wave": []
+            }
+          ]
+        },
+        {
+          "Book": [
+            {
+              "#bible": []
+            }
+          ]
+        },
+        {
+          "#ideology": []
+        }
+      ]
+    },
+    {
+      "Civilization": [
+        {
+          "Philosophy": [
+            {
+              "#hedonism": []
+            }
+          ]
+        },
+        {
+          "#culture": [
+            {
+              "#culinary": []
+            }
+          ]
+        },
+        {
+          "Themes": [
+            {
+              "#poverty": []
+            },
+            {
+              "Natural_phenomenon": [
+                {
+                  "#moon": []
+                },
+                {
+                  "#sun": []
+                },
+                {
+                  "#star": []
+                }
+              ]
+            },
+            {
+              "Primary_trigger": [
+                {
+                  "#fear": []
+                },
+                {
+                  "#love": []
+                },
+                {
+                  "#freedom": []
+                },
+                {
+                  "#duality": []
+                },
+                {
+                  "#mistake": []
+                },
+                {
+                  "#creation": []
+                },
+                {
+                  "#the_end": []
+                },
+                {
+                  "#memory": []
+                },
+                {
+                  "#free_will": []
+                },
+                {
+                  "#hope": []
+                },
+                {
+                  "#identity": []
+                },
+                {
+                  "#betrayal": []
+                }
+              ]
+            },
+            {
+              "#inner_strength": []
+            },
+            {
+              "#machivellian": []
+            },
+            {
+              "#heroism": []
+            },
+            {
+              "#gifted": []
+            },
+            {
+              "#addiction": []
+            },
+            {
+              "#morality": []
+            },
+            {
+              "#self_improvement": []
+            }
+          ]
+        },
+        {
+          "#politics": [
+            {
+              "#dictator": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "#poem": [
+        {
+          "#William_Blake": []
+        }
+      ]
+    }
+  ]
+}
