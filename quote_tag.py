@@ -91,10 +91,10 @@ def extract_keys(obj):
 
 extract_keys(data)
 keys_option = sorted(list(keys_option), key=lambda x: x)
-tab1, tab2, tab3, tab4 = st.tabs(["📌 Lấy Tag", "🌿 Thêm Nhánh", "🪵 Chèn Cành", "🗑️ Xóa Cành"])
-
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["📌 Lấy Tag", "🌿 Thêm Nhánh", "🪵 Chèn Cành", "🗑️ Xóa Cành", "✏️ Sửa nội dung"])
 with tab1:
     tag_path = set()
+    tag_p = set()
     with st.form("my_form"):
         selected = st.multiselect("Tìm và chọn tag: ", keys_option, key='sectlect4')
         submitted = st.form_submit_button('Xác nhận')
@@ -102,14 +102,17 @@ with tab1:
     if submitted and selected:
         for select_note in selected:
             tag_x = omni.find_path(data, select_note)
+            tag_p.update(tag_x)
             omni.clean_data(tag_x)
             tag_path.update(tag_x)
-        st.write("Kết quả tag_path:")
-        st.write(sorted(list(tag_path), key=lambda x: x.lower()))
-
+        st.write("Kết quả tag path:")
+        st.code(" ".join(sorted(tag_path, key=lambda x: x.lower())), language='text')
+        st.write("Kết quả prompt path:")
+        st.code(", ".join(sorted(omni.clean_set(tag_p - tag_path), key=lambda x: x.lower())), language='text')
+        
 with tab2:
-    selected = st.multiselect("Rẻ từ nhánh: ", keys_option, key='sectlect1')
-    select_note = selected[0] if selected else None
+    selected = st.selectbox("Rẻ từ nhánh: ", keys_option, key='sectlect1')
+    select_note = selected if selected else None
 
     user_input = st.text_input("Tên nhánh mới: ", key='confirm_button12')
 
@@ -120,8 +123,8 @@ with tab2:
 
 
 with tab3:
-    selected = st.multiselect("Là parent của: ", keys_option, key='sectlect2')
-    select_note = selected[0] if selected else None
+    selected = st.selectbox("Là parent của: ", keys_option, key='sectlect2')
+    select_note = selected if selected else None
 
     user_input = st.text_input("Tên cành mới: ", key='confirm_button2')
 
@@ -132,10 +135,38 @@ with tab3:
 
 
 with tab4:
-    selected = st.multiselect("Chọn nhánh cần xóa: ", keys_option[1:], key='sectlect3')
-    select_note = selected[0] if selected else None
+    selected = st.selectbox("Chọn nhánh cần xóa: ", keys_option[1:], key='sectlect3')
+    select_note = selected if selected else None
     if st.button('Xác nhận', key='confirm_button3'):
         omni.remove_key_once(data, select_note)
         st.session_state.data = data
         st.rerun()
+
+with tab5:
+    selected = st.selectbox("Chọn nhánh cần đổi tên: ", keys_option, key='rename_select')
+    new_key = st.text_input("Tên mới cho nhánh đã chọn: ", key='rename_input')
+
+    if st.button("Xác nhận đổi tên", key='rename_confirm'):
+        found = [False]  # Dùng list thay cho biến nonlocal
+
+        def rename_key(obj):
+            if isinstance(obj, dict):
+                if selected in obj:
+                    obj[new_key] = obj.pop(selected)
+                    found[0] = True
+                    return
+                for v in obj.values():
+                    rename_key(v)
+            elif isinstance(obj, list):
+                for item in obj:
+                    rename_key(item)
+
+        rename_key(data)
+
+        if found[0]:
+            st.session_state.data = data
+            st.success(f"Đã đổi tên nhánh '{selected}' thành '{new_key}'.")
+            st.rerun()
+        else:
+            st.warning("Không tìm thấy nhánh để đổi tên.")
 
