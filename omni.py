@@ -108,3 +108,16 @@ def clean_data(data):
                 del data[i]
             else:
                 clean_data(item)
+
+def clean_set(s):
+    if not isinstance(s, set):
+        return s  # Không phải set thì trả nguyên
+
+    new_set = set()
+    for item in s:
+        if isinstance(item, str) and item.startswith("("):
+            split_index = item.find("): ")
+            if split_index != -1:
+                item = item[split_index + 3:]  # Bỏ phần "(...): "
+        new_set.add(item)
+    return new_set
